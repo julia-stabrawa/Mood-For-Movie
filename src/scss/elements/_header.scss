@@ -1,0 +1,105 @@
+header {
+  background-color: $text-color;
+  width: 100vw;
+  height: 120px;
+  display: flex;
+  justify-content: center;
+  box-shadow: 0 5px 6px rgba(0,0,0,0.3);
+  top: 0;
+  position: fixed;
+  z-index: 99;
+}
+
+.header__container {
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  ul {
+    display: flex;
+    align-items: center;
+
+    li{
+      list-style: none;
+      color: $accent-yellow;
+      margin-left: 0.5rem;
+      margin-right: 0.5rem;
+
+      @media #{$media-tablet} {
+        margin-left: 0.8rem;
+        margin-right: 0.8rem;
+      }
+      @media #{$media-desktop} {
+        margin-left: 1.2rem;
+        margin-right: 1.2rem;
+      }
+
+      a {
+        color: $accent-yellow;
+        text-decoration: none;
+        font-size: 2rem;
+
+        @media #{$media-tablet} {
+          font-size: 0.8rem;
+        }
+        @media #{$media-desktop} {
+          font-size: 1rem;
+        }
+      }
+
+      input {
+        background-color: transparent;
+        border: none;
+        border-bottom: 2px solid $accent-yellow;
+        color: $light-background;
+        font-weight: 500;
+      }
+    }
+  }
+}
+
+.logo {
+  font-family: 'Inter', sans-serif;
+  color: $accent-yellow;
+  font-weight: 800;
+  font-size: 1.5rem;
+  letter-spacing: 0.1rem;
+  text-decoration: none;
+  border: 2px solid $accent-yellow;
+  cursor: pointer;
+  span{
+    font-family: 'Inter', sans-serif;
+    color: $light-background;
+  }
+}
+
+
+.menu {
+  padding: 60px 0 45px 0;
+  transition: 0.2s;
+  letter-spacing: 0.1rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  cursor: pointer;
+
+  &:hover {
+    border-bottom: 4px solid $accent-yellow;
+  }
+}
+
+.fa-search {
+  margin-left: -1.5rem;
+}
+
+.user__name {
+  color: $light-background !important;
+  font-size: 1.2rem;
+  font-weight: 600;
+
+  i {
+    font-size: 1.5rem;
+    margin-left: 0.5rem;
+  }
+}
