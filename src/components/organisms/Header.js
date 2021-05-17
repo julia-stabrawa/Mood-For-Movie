@@ -6,7 +6,9 @@ import Search from "../molecules/Search";
 import Nav from "../molecules/Nav";
 import MovieSearch from "../molecules/MovieSearch";
 
-const Header = ({searchValue, setSearchValue, movies, handleAddClick, addComponent}) => {
+const Header = ({searchValue, setSearchValue, movies, handleAddClick}) => {
+
+    const name = localStorage.getItem("user");
 
     return (
         <>
@@ -21,8 +23,8 @@ const Header = ({searchValue, setSearchValue, movies, handleAddClick, addCompone
                                 setSearchValue={setSearchValue}
                             />
                             <div className="user__name">
+                                <h2>{name}</h2>
                                 <FontAwesomeIcon icon={faUser}/>
-                                {/*{name}*/}
                             </div>
                         </li>
                     </ul>
@@ -31,7 +33,6 @@ const Header = ({searchValue, setSearchValue, movies, handleAddClick, addCompone
             <MovieSearch
                 movies={movies}
                 handleAddClick={handleAddClick}
-                addComponent={addComponent}
             />
         </>
     );

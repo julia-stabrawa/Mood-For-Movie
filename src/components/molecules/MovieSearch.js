@@ -1,7 +1,6 @@
 import React from 'react';
 
-const MovieSearch = ({movies, handleAddClick, addComponent}) => {
-    const FavouriteComponent = addComponent;
+const MovieSearch = ({movies, handleAddClick}) => {
 
     return (
         <div className="search__carousel">

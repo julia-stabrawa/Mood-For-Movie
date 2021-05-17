@@ -10,29 +10,27 @@ import ToWatch from "./components/pages/ToWatch";
 import Watched from "./components/pages/Watched";
 import Favourites from "./components/pages/Favourites";
 import Header from "./components/organisms/Header";
-import AddFavourite from "./components/atoms/AddFavourite";
 
-const App = () =>  {
+const App = () => {
     const [loggedIn, setLoggedIn] = useState(false);
     const [searchValue, setSearchValue] = useState("");
     const [movies, setMovies] = useState([]);
     const [toWatch, setToWatch] = useState([]);
+    const [toWatched, setToWatched] = useState([]);
 
     const logInFunc = (result) => {
         setLoggedIn(result);
     }
     useEffect(() => {
-        if (localStorage.getItem("name")) {
+        if (localStorage.getItem("user")) {
             setLoggedIn(true);
         }
     }, []);
 
     const getMovieRequest = async () => {
         const url = `https://api.themoviedb.org/3/search/movie?api_key=3bf47b8177eb6e12778cee7e90d70f5a&query=${searchValue}`
-
         const response = await fetch(url);
         const responseJson = await response.json();
-
         if (responseJson.results) {
             setMovies(responseJson.results);
         }
@@ -49,6 +47,18 @@ const App = () =>  {
             setToWatch(newList);
         }
     }
+    const addToWatched = (movie) => {
+        if (toWatched.includes(movie)) {
+            alert("You have this movie already on your list :)");
+        } else {
+            const newList = [...toWatched, movie]
+            setToWatched(newList);
+        }
+    }
+
+    useEffect(() => {
+        localStorage.setItem('movies', JSON.stringify(toWatch))
+    }, [toWatch]);
 
     return (
         <Router>
@@ -57,23 +67,27 @@ const App = () =>  {
                 setSearchValue={setSearchValue}
                 movies={movies}
                 handleAddClick={addToList}
-                addComponent={AddFavourite}
             />
             <Switch>
                 <Route path="/favourites">
-                    <Favourites />
+                    <Favourites/>
                 </Route>
                 <Route path="/watched">
-                    <Watched />
+                    <Watched/>
                 </Route>
                 <Route path="/watch">
-                    <ToWatch />
+                    <ToWatch
+                        movies={toWatch}
+                        watched={toWatched}
+                        handleAddClick={addToWatched}
+                    />
                 </Route>
                 <Route path="/">
-                    {/*/!*{!loggedIn ?*!/*/}
-                    {/*/!*    <LogIn logFunc={logInFunc}/>*!/*/}
-                    {/*/!*    :*!/*/}
-                    {/*    <Landing logFunc={logInFunc}/>*/}
+                    {!loggedIn ?
+                        <LogIn logFunc={logInFunc}/>
+                        :
+                        <Landing logFunc={logInFunc} movies={movies}/>
+                    }
                 </Route>
             </Switch>
         </Router>
