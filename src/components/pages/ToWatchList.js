@@ -1,11 +1,13 @@
 import React, {useState} from "react";
 import {goGenre} from "../../genres";
+import {faCheckCircle} from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import BtnAction from "../atoms/BtnAction";
 
-const ToWatch = ({movies, watched, handleAddClick}) => {
+const ToWatchList = ({movies, watched, handleAddClick}) => {
 
     const all = movies.length > 0 ? movies : [];
-    const comedy =  movies.length > 0 ? [...movies].filter(el => el.genre_ids.includes(35)) : [];
+    const comedy = movies.length > 0 ? [...movies].filter(el => el.genre_ids.includes(35)) : [];
     const drama = movies.length > 0 ? [...movies].filter(el => el.genre_ids.includes(18)) : [];
     const animation = movies.length > 0 ? [...movies].filter(el => el.genre_ids.includes(16)) : [];
     const action = movies.length > 0 ? [...movies].filter(el => el.genre_ids.includes(28)) : [];
@@ -37,45 +39,50 @@ const ToWatch = ({movies, watched, handleAddClick}) => {
                 <div className="watch__container">
                     <div className="watch__title">
                         <h2>MOVIES TO WATCH</h2>
-                        <div className="genres__btn">{movies.length > 0 ? genres.map((el, i) => <BtnAction clickAction={() => getGenre(el)} text={gen[i].toUpperCase()}/>) : ""}
+                        <div className="genres__btn">
+                            {movies.length > 0 ? genres.map((el, i) =>
+                                <BtnAction
+                                    clickAction={() => getGenre(el)}
+                                    text={gen[i].toUpperCase()}
+                                />
+                            ) : ""}
                         </div>
                     </div>
                     <ul>
                         {visibility.length > 0 ? visibility.map((movie, i) =>
-                            <div>{watched.includes(movie) ? "" :
-                                <li key={i} className={"movie__element"}>
-                                    <div className="movie__details">
-                                        <div className="movie__number">{i + 1}</div>
-                                        <div className="photo">
-                                            <img
-                                                src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
-                                                alt={movie.title}/>
-                                        </div>
-                                        <div className="movie__info">
-                                            <h1>{movie.title}
-                                            </h1>
-                                            <h2>Genres:</h2>
-                                            <p>{movie.genre_ids.map((el) => {
-                                                return goGenre(el);
-                                            }).join(", ")
-                                            }</p>
-                                        </div>
-                                        <div className="movie__overview">
-                                            <h2>Overview:</h2>
-                                            <p>{movie.overview}</p>
-                                        </div>
+                            <li key={i} className="movie__element">
+                                <div className="movie__details">
+                                    <div className="photo">
+                                        <img
+                                            src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
+                                            alt={movie.title}/>
                                     </div>
-                                    <div className="movie__actions">
-                                        <i className="far fa-check-circle"
-                                           onClick={() => handleAddClick(movie)}> </i>
+                                    <div className="movie__info">
+                                        <h1>{movie.title}</h1>
+                                        <h2>Genres:</h2>
+                                        <p>{movie.genre_ids.map((el) => {
+                                            return goGenre(el);
+                                        }).join(", ")
+                                        }</p>
                                     </div>
-                                </li>
-                            }</div>) : "You don't have any movie in your list yet :)"}
+                                    <div className="movie__overview">
+                                        <h2>Overview:</h2>
+                                        <p>{movie.overview}</p>
+                                    </div>
+                                </div>
+                                <div className="movie__actions">
+                                    {watched.includes(movie) ? "" :
+                                    <div onClick={() => handleAddClick(i)}>
+                                        <FontAwesomeIcon icon={faCheckCircle}/>
+                                    </div>
+                                }</div>
+                            </li>
+                        ) : "You don't have any movie in your list yet :)"}
                     </ul>
                 </div>
             </section>
         </>
-    )
+    );
 }
 
-export default ToWatch;
+export default ToWatchList;

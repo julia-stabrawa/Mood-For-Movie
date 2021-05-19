@@ -6,10 +6,10 @@ import {
 } from "react-router-dom";
 import LogIn from "./components/pages/LogIn";
 import Landing from "./components/pages/Landing";
-import ToWatch from "./components/pages/ToWatch";
-import Watched from "./components/pages/Watched";
-import Favourites from "./components/pages/Favourites";
 import Header from "./components/organisms/Header";
+import ToWatchList from "./components/pages/ToWatchList";
+import WatchedList from "./components/pages/WatchedList";
+import FavouriteList from "./components/pages/FavouriteList";
 
 const App = () => {
     const [loggedIn, setLoggedIn] = useState(false);
@@ -17,6 +17,7 @@ const App = () => {
     const [movies, setMovies] = useState([]);
     const [toWatch, setToWatch] = useState([]);
     const [toWatched, setToWatched] = useState([]);
+    const [toFav, setToFav] = useState([]);
 
     const logInFunc = (result) => {
         setLoggedIn(result);
@@ -47,18 +48,48 @@ const App = () => {
             setToWatch(newList);
         }
     }
-    const addToWatched = (movie) => {
-        if (toWatched.includes(movie)) {
-            alert("You have this movie already on your list :)");
+    const addToWatched = (i) => {
+        const newWatched = [...toWatched, toWatch[i]]
+        setToWatched(newWatched);
+    }
+    const addToFav = (movie) => {
+        if (toFav.includes(movie)) {
+            alert("This movie already is on your favourite list");
         } else {
-            const newList = [...toWatched, movie]
-            setToWatched(newList);
+            const newList = [...toFav, movie]
+            setToFav(newList);
         }
     }
+    useEffect(() => {
+        const data = localStorage.getItem('movies')
+        if (data) {
+            setToWatch(JSON.parse(data))
+        }
+    }, [])
+    useEffect(() => {
+        const data = localStorage.getItem('watched')
+        if (data) {
+            setToWatched(JSON.parse(data))
+        }
+    }, [])
+    useEffect(() => {
+        const data = localStorage.getItem('fav')
+        if (data) {
+            setToFav(JSON.parse(data))
+        }
+    }, []);
 
     useEffect(() => {
         localStorage.setItem('movies', JSON.stringify(toWatch))
     }, [toWatch]);
+    useEffect(() => {
+        localStorage.setItem('watched', JSON.stringify(toWatched))
+    }, [toWatched]);
+    useEffect(() => {
+        localStorage.setItem('fav', JSON.stringify(toFav))
+    }, [toFav]);
+    const localMovies = JSON.parse(localStorage.getItem('movies'));
+    const localWatched = JSON.parse(localStorage.getItem('watched'));
 
     return (
         <Router>
@@ -70,14 +101,19 @@ const App = () => {
             />
             <Switch>
                 <Route path="/favourites">
-                    <Favourites/>
+                    <FavouriteList
+                        movies={toFav}
+                    />
                 </Route>
                 <Route path="/watched">
-                    <Watched/>
+                    <WatchedList
+                        movies={localWatched ? localWatched : toWatched}
+                        handleAddClick={addToFav}
+                    />
                 </Route>
                 <Route path="/watch">
-                    <ToWatch
-                        movies={toWatch}
+                    <ToWatchList
+                        movies={localMovies ? localMovies : toWatch}
                         watched={toWatched}
                         handleAddClick={addToWatched}
                     />
@@ -86,7 +122,7 @@ const App = () => {
                     {!loggedIn ?
                         <LogIn logFunc={logInFunc}/>
                         :
-                        <Landing logFunc={logInFunc} movies={movies}/>
+                        <Landing logFunc={logInFunc} movies={toWatch}/>
                     }
                 </Route>
             </Switch>

@@ -4,7 +4,7 @@ const BtnAction = ({clickAction, text}) => {
     return (
         <button
             type="submit"
-            className="form__btn"
+            className="genre__btn"
             onClick={clickAction}
         >{text}</button>
     );
