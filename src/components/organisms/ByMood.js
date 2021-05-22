@@ -30,7 +30,7 @@ const ByMood = ({movies}) => {
     });
 
     return (
-        <section className="genre">
+        <section className="mood">
             <div className="genre__container">
                 <div className="genre__title">
                     <FontAwesomeIcon icon={faBrain}/>

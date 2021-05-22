@@ -1,9 +1,9 @@
 import React from 'react';
 
-const MovieSearch = ({movies, handleAddClick}) => {
+const MovieSearch = ({movies, hide, handleAddClick}) => {
 
     return (
-        <div className="search__carousel">
+        <div className={hide}>
             {movies.map((movie, i) =>
                 <div className="search__result" key={i} onClick={() => handleAddClick(movie)}>
                     <img

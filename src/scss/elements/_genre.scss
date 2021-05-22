@@ -1,13 +1,23 @@
 .genre {
   display: flex;
   justify-content: center;
-  margin-top: 1rem;
+  margin-top: 10rem;
 
   @media #{$media-tablet} {
-    margin-top: 2rem;
+    margin-top: 10rem;
   }
   @media #{$media-desktop} {
-    margin-top: 3rem;
+    margin-top: 10rem;
+  }
+}
+
+.mood {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+
+  @media #{$media-desktop} {
+    margin-top: 2rem;
   }
 }
 

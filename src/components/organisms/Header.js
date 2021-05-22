@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {Link} from "react-router-dom";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faUser} from '@fortawesome/free-solid-svg-icons';
@@ -7,8 +7,20 @@ import Nav from "../molecules/Nav";
 import MovieSearch from "../molecules/MovieSearch";
 
 const Header = ({searchValue, setSearchValue, movies, handleAddClick}) => {
-
+    const [hide, setHide] = useState("search__carousel")
     const name = localStorage.getItem("user");
+
+    const hideCarousel = () => {
+        if (searchValue === "") {
+            setHide("hide")
+        }else{
+            setHide("search__carousel")
+        }
+    }
+
+    useEffect(() => {
+        hideCarousel();
+    }, [searchValue]);
 
     return (
         <>
@@ -33,6 +45,7 @@ const Header = ({searchValue, setSearchValue, movies, handleAddClick}) => {
             <MovieSearch
                 movies={movies}
                 handleAddClick={handleAddClick}
+                hide={hide}
             />
         </>
     );
