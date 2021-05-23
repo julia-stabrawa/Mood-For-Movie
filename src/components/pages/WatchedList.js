@@ -4,7 +4,7 @@ import {faHeart} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import BtnAction from "../atoms/BtnAction";
 
-const WatchedList = ({movies, handleAddClick}) => {
+const WatchedList = ({movies, fav, handleAddClick}) => {
 
     const all = movies.length > 0 ? movies : [];
     const comedy = movies.length > 0 ? [...movies].filter(el => el.genre_ids.includes(35)) : [];
@@ -72,10 +72,11 @@ const WatchedList = ({movies, handleAddClick}) => {
                                     </div>
                                 </div>
                                 <div className="movie__actions">
-                                    <div onClick={() => handleAddClick(movie)}>
-                                        <FontAwesomeIcon icon={faHeart}/>
-                                    </div>
-                                </div>
+                                    {fav.includes(movie) ? "" :
+                                        <div onClick={() => handleAddClick(movie)}>
+                                            <FontAwesomeIcon icon={faHeart}/>
+                                        </div>
+                                    }</div>
                             </li>
                         ) : "You don't have any watched movies yet :)"}
                     </ul>

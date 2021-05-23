@@ -3,12 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="9a20e7f2-8de2-4915-b7d3-a979838f12f0" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/molecules/MovieSearch.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/molecules/MovieSearch.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/organisms/ByMood.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/organisms/ByMood.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/organisms/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/organisms/Header.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scss/elements/_genre.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/scss/elements/_genre.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/pages/WatchedList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/WatchedList.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/scss/elements/_search.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/scss/elements/_search.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scss/elements/_toWatch.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/scss/elements/_toWatch.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,7 +59,8 @@
       <workItem from="1620838296963" duration="51446000" />
       <workItem from="1621415997373" duration="27164000" />
       <workItem from="1621499903847" duration="2491000" />
-      <workItem from="1621698150738" duration="3295000" />
+      <workItem from="1621698150738" duration="3340000" />
+      <workItem from="1621758027901" duration="1729000" />
     </task>
     <servers />
   </component>

@@ -107,13 +107,14 @@ const App = () => {
                 </Route>
                 <Route path="/watched">
                     <WatchedList
-                        movies={localWatched ? localWatched : toWatched}
+                        movies={toWatched}
+                        fav={toFav}
                         handleAddClick={addToFav}
                     />
                 </Route>
                 <Route path="/watch">
                     <ToWatchList
-                        movies={localMovies ? localMovies : toWatch}
+                        movies={toWatch}
                         watched={toWatched}
                         handleAddClick={addToWatched}
                     />
